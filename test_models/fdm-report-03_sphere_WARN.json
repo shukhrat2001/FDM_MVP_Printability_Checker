@@ -1,0 +1,35 @@
+{
+  "filename": "03_sphere_WARN.stl",
+  "timestamp": "2026-04-09T19:52:08.272994+00:00",
+  "process": "FDM",
+  "status": "PASS",
+  "issues": [],
+  "warnings": [
+    "192 face(s) may need supports."
+  ],
+  "mesh_info": {
+    "vertices": 642,
+    "faces": 1280,
+    "is_watertight": true,
+    "bounding_box_mm": {
+      "x": 30,
+      "y": 30,
+      "z": 30
+    },
+    "volume_cm3": 14.02
+  },
+  "wall_thickness": {
+    "min_wall_thickness_mm": 29.801,
+    "mean_wall_thickness_mm": 29.876,
+    "method": "raycast",
+    "samples": 800,
+    "error": null
+  },
+  "overhangs": {
+    "overhang_angle_deg": 45,
+    "violating_faces": 192,
+    "total_faces": 1280,
+    "overhang_percentage": 15,
+    "needs_supports": true
+  }
+}

@@ -1,0 +1,295 @@
+
+<style>
+* { box-sizing: border-box; }
+.phase { border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); margin-bottom: 12px; overflow: hidden; }
+.phase-header { padding: 12px 16px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+.phase-header:hover { background: var(--color-background-secondary); }
+.phase-body { padding: 0 16px 14px; display: none; }
+.phase-body.open { display: block; }
+.step { display: flex; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); align-items: flex-start; }
+.step:last-child { border-bottom: none; }
+.step-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; margin-top: 1px; }
+.step-done { background: #E1F5EE; color: #085041; }
+.step-active { background: #E6F1FB; color: #0C447C; }
+.step-future { background: var(--color-background-secondary); color: var(--color-text-tertiary); }
+.tag { font-size: 10px; padding: 1px 7px; border-radius: 10px; font-weight: 500; white-space: nowrap; display: inline-block; margin-bottom: 4px; }
+.tag-now { background: #E1F5EE; color: #085041; }
+.tag-week { background: #FAEEDA; color: #633806; }
+.tag-month { background: #E6F1FB; color: #0C447C; }
+.tag-money { background: #FCEBEB; color: #791F1F; }
+.code-block { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: 8px; padding: 10px 12px; font-size: 11px; font-family: var(--font-mono); color: var(--color-text-secondary); margin-top: 6px; line-height: 1.7; white-space: pre; overflow-x: auto; }
+.phase-title { font-size: 14px; font-weight: 500; }
+.phase-sub { font-size: 12px; color: var(--color-text-secondary); margin-left: auto; }
+.chevron { font-size: 11px; color: var(--color-text-tertiary); transition: transform 0.2s; }
+.chevron.open { transform: rotate(90deg); }
+.progress-bar { height: 3px; background: var(--color-border-tertiary); border-radius: 2px; margin: 0 16px 12px; }
+.progress-fill { height: 100%; border-radius: 2px; transition: width 0.3s; }
+.milestone { background: var(--color-background-secondary); border-radius: 8px; padding: 8px 12px; margin-top: 8px; font-size: 12px; color: var(--color-text-secondary); border-left: 3px solid #1D9E75; }
+</style>
+
+<h2 class="sr-only">Step by step action plan for FDM Checker</h2>
+<p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 14px;">Click each phase to expand. Do them in order.</p>
+
+<!-- PHASE 1 -->
+<div class="phase">
+  <div class="phase-header" onclick="toggle(this)">
+    <div class="step-num step-active">1</div>
+    <div>
+      <div class="phase-title">Deploy live — get a real URL today</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);">~30 minutes · free · do this first</div>
+    </div>
+    <div class="phase-sub"></div>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" style="width:0%;background:#1D9E75;"></div></div>
+  <div class="phase-body">
+    <div class="step">
+      <div class="step-num step-active">1</div>
+      <div>
+        <span class="tag tag-now">Do now</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Push your code to GitHub</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Create a free GitHub account if needed. Create a new repo called <em>fdm-checker</em>, make it public.</div>
+        <div class="code-block">git init
+git add .
+git commit -m "initial commit"
+git remote add origin https://github.com/YOURNAME/fdm-checker.git
+git push -u origin main</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-active">2</div>
+      <div>
+        <span class="tag tag-now">Do now</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Deploy frontend to Vercel (free)</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Go to vercel.com → New Project → import your GitHub repo. It auto-detects Vite/React. Hit Deploy. You get a live URL in 2 minutes.</div>
+        <div class="milestone">✓ Result: yourapp.vercel.app — shareable URL you can show anyone</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-active">3</div>
+      <div>
+        <span class="tag tag-now">Do now</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Deploy your Python backend to Render (free)</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Your app has a FastAPI/Flask backend at <em>/api</em>. Go to render.com → New Web Service → connect GitHub → set start command. Free tier sleeps after inactivity but wakes in ~30s — fine for testing.</div>
+        <div class="code-block">Start command (FastAPI):
+uvicorn main:app --host 0.0.0.0 --port $PORT
+
+Start command (Flask):
+gunicorn app:app</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-top:6px;">Then in Vercel, add an environment variable: <em>VITE_API_URL=https://your-backend.onrender.com</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase">
+  <div class="phase-header" onclick="toggle(this)">
+    <div class="step-num step-future">2</div>
+    <div>
+      <div class="phase-title">Make it actually useful — 3 day code sprint</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);">3 days · the difference between a toy and a tool</div>
+    </div>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" style="width:0%;background:#BA7517;"></div></div>
+  <div class="phase-body">
+    <div class="step">
+      <div class="step-num step-future">1</div>
+      <div>
+        <span class="tag tag-week">Day 1</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Add printer profile selector to the UI</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Add a dropdown above the drop zone. Options: Bambu Lab FDM / Prusa FDM / Formlabs Resin / Generic FDM. Store as state, pass to results. This makes every result feel personalized. Tell Claude: <em>"Add a printer profile selector dropdown to my App.js — here is the code [paste it]. Store the selected profile in state and pass it to SingleMode and BatchMode as a prop."</em></div>
+        <div class="milestone">✓ Now users feel seen. "Oh it knows I have a Bambu."</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">2</div>
+      <div>
+        <span class="tag tag-week">Day 1</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Replace jargon with plain English + fix instructions</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Every IssueRow currently shows raw text like "non-manifold edges detected." Change it to: <em>"Mesh has holes — your slicer will behave unpredictably. Fix: open in Meshmixer → Analysis → Inspector → Auto Repair All."</em> Ask Claude to write a <em>humanizeIssue(text, profile)</em> function that maps issue text to plain descriptions + fix steps.</div>
+        <div class="milestone">✓ Now a dental tech or hobbyist actually knows what to do</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">3</div>
+      <div>
+        <span class="tag tag-week">Day 2</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Add a printability score (0–100)</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Compute a single score from wall thickness, overhang %, and watertight status. Show it as a big number with a color ring. People screenshot and share scores. "My model scored 91!" is social. Ask Claude: <em>"Add a printability score 0-100 to my results display. Weight: watertight 40pts, wall thickness 35pts, overhang 25pts. Show as a large colored circle."</em></div>
+        <div class="milestone">✓ Makes results shareable. Drives word-of-mouth.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">4</div>
+      <div>
+        <span class="tag tag-week">Day 3</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Add material cost estimate</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">You already have <em>volume_cm3</em> from the API. PLA density = 1.24 g/cm³, resin = 1.1 g/cm³. PLA costs ~$0.02/g, resin ~$0.13/g. Show: <em>"Estimated material: 18g (~$0.36 PLA) — a failed print wastes this + your time."</em> This is the ROI argument that justifies paying.</div>
+        <div class="milestone">✓ Users now understand what a failed print actually costs them</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase">
+  <div class="phase-header" onclick="toggle(this)">
+    <div class="step-num step-future">3</div>
+    <div>
+      <div class="phase-title">Get your first 100 users — free marketing</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);">1 week · no budget needed</div>
+    </div>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" style="width:0%;background:#185FA5;"></div></div>
+  <div class="phase-body">
+    <div class="step">
+      <div class="step-num step-future">1</div>
+      <div>
+        <span class="tag tag-week">Post day 1</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Post on r/3Dprinting (1.8M members)</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px;">Title: <em>"I built a free tool that checks if your STL will actually print before you waste filament — roast it"</em>. Include a GIF of the app working. The word "roast" gets engagement, the word "free" gets clicks. DO NOT mention pricing yet.</div>
+        <div class="milestone">✓ Expect 200–2000 visitors in 48 hours if it resonates</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">2</div>
+      <div>
+        <span class="tag tag-week">Same day</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Post on r/FDMprinting, r/prusa3d, r/BambuLab</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);">Each subreddit has a different angle. For r/BambuLab: "I added Bambu Lab printer profiles so thresholds match your machine." Community-specific framing gets 3x the upvotes.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">3</div>
+      <div>
+        <span class="tag tag-week">Day 2</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Post on Printables.com and Thangs.com</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);">These are model-sharing platforms. Users are downloading and printing daily — they are your exact target. Both have community forums. Post in the "tools" or "makers" section.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">4</div>
+      <div>
+        <span class="tag tag-week">Day 3</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Add a simple email capture</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Use Mailchimp free tier (0–500 emails free). After analysis completes, show: <em>"Get notified when we add auto-repair and PDF reports — enter your email."</em> This is your list. When you launch paid features, you email this list first.</div>
+        <div class="milestone">✓ 50 emails = real validation. 200 emails = launch paid tier.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">5</div>
+      <div>
+        <span class="tag tag-week">Day 5</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Cold email 10 dental labs</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">Google "dental lab [your city]". Email the owner/manager. Subject: <em>"Free printability check for your STL files — no strings"</em>. Body: 3 sentences max. Offer to check 5 of their files free. One yes = a case study. One paying lab = $99–199/month.</div>
+        <div class="milestone">✓ 1 paying dental lab covers your server costs immediately</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 4 -->
+<div class="phase">
+  <div class="phase-header" onclick="toggle(this)">
+    <div class="step-num step-future">4</div>
+    <div>
+      <div class="phase-title">Charge money — launch paid tier</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);">Week 2–3 · only after you have 50+ active users</div>
+    </div>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" style="width:0%;background:#A32D2D;"></div></div>
+  <div class="phase-body">
+    <div class="step">
+      <div class="step-num step-future">1</div>
+      <div>
+        <span class="tag tag-money">Revenue</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Set up Stripe in 1 hour</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">stripe.com → create account → copy your API keys. Use Stripe's hosted checkout — you don't need to build a payments UI. Ask Claude: <em>"Add Stripe checkout to my app. Free tier = 3 analyses/day. Pro = unlimited at $12/month. Use Stripe hosted checkout link."</em></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">2</div>
+      <div>
+        <span class="tag tag-money">Revenue</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Pricing structure</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);">Free: 3 analyses/day, no batch, no PDF. Pro ($12/mo): unlimited single, batch up to 50, PDF report. Lab ($79/mo): everything + dental profiles + team seats + history dashboard. Start with just Free + Pro. Add Lab tier when a dental lab asks for it.</div>
+        <div class="milestone">✓ 10 Pro users = $120/mo. 1 Lab = $79/mo. 20 Pro + 3 Labs = $477/mo recurring</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">3</div>
+      <div>
+        <span class="tag tag-money">Revenue</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Email your list when Pro launches</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);">Send one email: "Pro is live — first 20 subscribers get 50% off forever ($6/mo). Link." Founding member pricing converts 3–8x better than full price. Early adopters become your best advocates.</div>
+        <div class="milestone">✓ Your first dollar will come within 24 hours of this email</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 5 -->
+<div class="phase">
+  <div class="phase-header" onclick="toggle(this)">
+    <div class="step-num step-future">5</div>
+    <div>
+      <div class="phase-title">Add the PDF report — unlock lab sales</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);">Week 3–4 · single biggest revenue unlock</div>
+    </div>
+    <span class="chevron">▶</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" style="width:0%;background:#534AB7;"></div></div>
+  <div class="phase-body">
+    <div class="step">
+      <div class="step-num step-future">1</div>
+      <div>
+        <span class="tag tag-month">Week 3</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Generate PDF with ReportLab (Python)</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">In your Python backend, install reportlab. Ask Claude: <em>"Using ReportLab, generate a PDF from my analysis JSON. Include: filename, score, status, each issue with fix instructions, metrics table, and a footer with my branding."</em></div>
+        <div class="code-block">pip install reportlab
+# Claude will write the generate_pdf(result) function for you</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num step-future">2</div>
+      <div>
+        <span class="tag tag-month">Week 3</span>
+        <div style="font-size:13px;font-weight:500;margin-bottom:3px;">Use the PDF as your dental lab pitch</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);">Email a dental lab: attach a sample PDF report of a publicly available dental STL. Subject: <em>"Here's what a printability report looks like for your files."</em> A branded, professional PDF makes your tool feel like enterprise software. That's what labs pay for.</div>
+        <div class="milestone">✓ First lab contract likely closes here. $79–199/month.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-top: 4px; border: 0.5px solid var(--color-border-tertiary);">
+  <div style="font-size: 12px; font-weight: 500; margin-bottom: 8px;">Your 30-day target</div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center;">
+    <div style="background: var(--color-background-primary); border-radius: 8px; padding: 10px; border: 0.5px solid var(--color-border-tertiary);">
+      <div style="font-size: 20px; font-weight: 500; color: #1D9E75;">100+</div>
+      <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 2px;">registered users</div>
+    </div>
+    <div style="background: var(--color-background-primary); border-radius: 8px; padding: 10px; border: 0.5px solid var(--color-border-tertiary);">
+      <div style="font-size: 20px; font-weight: 500; color: #185FA5;">10–20</div>
+      <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 2px;">paying Pro users</div>
+    </div>
+    <div style="background: var(--color-background-primary); border-radius: 8px; padding: 10px; border: 0.5px solid var(--color-border-tertiary);">
+      <div style="font-size: 20px; font-weight: 500; color: #BA7517;">$200–500</div>
+      <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 2px;">monthly recurring</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+}
+</script>

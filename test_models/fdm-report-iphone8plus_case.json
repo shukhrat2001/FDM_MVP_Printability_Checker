@@ -1,0 +1,37 @@
+{
+  "filename": "iphone8plus_case.stl",
+  "timestamp": "2026-04-11T00:16:31.888945+00:00",
+  "process": "FDM",
+  "status": "FAIL",
+  "issues": [
+    "Min wall thickness 0.994 mm is below 1.2 mm"
+  ],
+  "warnings": [
+    "32.4% of faces overhang > 45.0° — heavy support material needed."
+  ],
+  "mesh_info": {
+    "vertices": 467,
+    "faces": 958,
+    "is_watertight": true,
+    "bounding_box_mm": {
+      "x": 80.5,
+      "y": 161,
+      "z": 12
+    },
+    "volume_cm3": 33.85
+  },
+  "wall_thickness": {
+    "min_wall_thickness_mm": 0.994,
+    "mean_wall_thickness_mm": 3.743,
+    "method": "raycast",
+    "samples": 800,
+    "error": null
+  },
+  "overhangs": {
+    "overhang_angle_deg": 45,
+    "violating_faces": 310,
+    "total_faces": 958,
+    "overhang_percentage": 32.4,
+    "needs_supports": true
+  }
+}

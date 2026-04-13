@@ -1,0 +1,5 @@
+"filename","status","min_wall_mm","mean_wall_mm","overhang_%","watertight","volume_cm3","issues","warnings"
+"02_thin_sheet_FAIL.stl","FAIL","0.399","1.142","16.7","true","0.64","Min wall thickness 0.399 mm is below 1.2 mm","2 face(s) may need supports."
+"04_hollow_thin_FAIL.stl","FAIL","0.499","0.499","16.7","false","2.7","Min wall thickness 0.499 mm is below 1.2 mm; Mesh is not watertight — may cause slicing errors.","12 face(s) may need supports."
+"01_cube_PASS.stl","PASS","19.999","19.999","16.7","true","8","","2 face(s) may need supports."
+"03_sphere_WARN.stl","PASS","29.805","29.877","15","true","14.02","","192 face(s) may need supports."

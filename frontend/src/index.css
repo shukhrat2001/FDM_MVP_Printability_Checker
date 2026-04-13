@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface-2: #1a1a24;
+  --border: #2a2a3a;
+  --accent: #00e5ff;
+  --accent-dim: #00e5ff22;
+  --pass: #00e676;
+  --fail: #ff1744;
+  --warn: #ffd740;
+  --text: #e8e8f0;
+  --text-muted: #6b6b80;
+  --mono: 'Space Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  min-height: 100vh;
+}
+
+/* Ensure Three.js canvas fits properly */
+canvas {
+  display: block;
+  outline: none;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 1; }
+  70% { transform: scale(1.15); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0.8; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.fade-up { animation: fade-up 0.5s ease forwards; }
+.fade-up-1 { animation: fade-up 0.5s 0.1s ease both; }
+.fade-up-2 { animation: fade-up 0.5s 0.2s ease both; }
+.fade-up-3 { animation: fade-up 0.5s 0.3s ease both; }
+.fade-up-4 { animation: fade-up 0.5s 0.4s ease both; }
+
+.scanning::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: scan 1.4s linear infinite;
+}
